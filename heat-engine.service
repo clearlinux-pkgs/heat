@@ -1,0 +1,14 @@
+[Unit]
+Description=Openstack Heat Engine Service
+After=syslog.target network.target mariadb.service keystone.service tgtd.service glance-api.service glance-registry.service nova-api.service nova-objectstore.service nova.compute.service nova-network.service nova-scheduler.service nova-cert.service cinder-volume.service
+
+[Service]
+Type=notify
+User=heat
+ExecStart=/usr/bin/heat-engine
+PrivateTmp=false
+NotifyAccess=all
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
