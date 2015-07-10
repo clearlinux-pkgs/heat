@@ -1,0 +1,3 @@
+Z /etc/heat/* 0640 root heat - -
+d /var/lib/heat - heat heat - -
+d /var/log/heat - heat heat - -

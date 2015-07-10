@@ -1,0 +1,4 @@
+install -d -m 755 %{buildroot}/usr/share/defaults/heat
+install -p -D -m 644 etc/heat/*.ini %{buildroot}/usr/share/defaults/heat/
+install -p -D -m 644 etc/heat/*.json %{buildroot}/usr/share/defaults/heat/
+install -p -D -m 644 etc/heat/heat.conf.sample %{buildroot}/usr/share/defaults/heat/heat.conf

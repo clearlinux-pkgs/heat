@@ -1,0 +1,14 @@
+[Unit]
+Description=OpenStack Heat API Service
+After=syslog.target network.target
+
+[Service]
+Type=notify
+User=heat
+ExecStart=/usr/bin/heat-api
+PrivateTmp=false
+NotifyAccess=all
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
