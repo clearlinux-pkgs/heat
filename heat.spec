@@ -4,7 +4,7 @@
 #
 Name     : heat
 Version  : 2015.1.1
-Release  : 6
+Release  : 7
 URL      : http://tarballs.openstack.org/heat/heat-2015.1.1.tar.gz
 Source0  : http://tarballs.openstack.org/heat/heat-2015.1.1.tar.gz
 Source1  : heat-api-cfn.service
