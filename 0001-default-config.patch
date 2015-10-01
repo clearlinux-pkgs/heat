@@ -1,4 +1,4 @@
-From 1df388a3c9370bbb42a06c22d71e21755a1f1332 Mon Sep 17 00:00:00 2001
+From 947da0d8676c2a91928f5e3b3b3544773ea8397d Mon Sep 17 00:00:00 2001
 From: Alberto Murillo <alberto.murillo.silva@intel.com>
 Date: Fri, 10 Jul 2015 12:12:02 -0500
 Subject: [PATCH] default config
@@ -10,7 +10,7 @@ Subject: [PATCH] default config
 
 diff --git a/etc/heat/heat.conf.sample b/etc/heat/heat.conf.sample
 new file mode 100644
-index 0000000..bf3f2a3
+index 0000000..03cded7
 --- /dev/null
 +++ b/etc/heat/heat.conf.sample
 @@ -0,0 +1,1377 @@
@@ -31,7 +31,7 @@ index 0000000..bf3f2a3
 +
 +# Name of the engine node. This can be an opaque identifier. It is not
 +# necessarily a hostname, FQDN, or IP address. (string value)
-+#host = controller 
++#host = controller
 +
 +#
 +# From heat.common.config
@@ -1392,5 +1392,5 @@ index 0000000..bf3f2a3
 +# another config option. (string value)
 +#heat_revision = unknown
 -- 
-2.1.0
+2.4.3
 
