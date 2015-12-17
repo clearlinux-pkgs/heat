@@ -4,7 +4,7 @@
 #
 Name     : heat
 Version  : 5.0.0
-Release  : 11
+Release  : 12
 URL      : http://tarballs.openstack.org/heat/heat-5.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/heat/heat-5.0.0.tar.gz
 Source1  : heat-api-cfn.service
