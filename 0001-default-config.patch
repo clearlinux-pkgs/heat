@@ -1,8 +1,9 @@
-From 947da0d8676c2a91928f5e3b3b3544773ea8397d Mon Sep 17 00:00:00 2001
-From: Alberto Murillo <alberto.murillo.silva@intel.com>
-Date: Fri, 10 Jul 2015 12:12:02 -0500
+From 20714c87cd162ff0ce296ec9dd746a950e9dcb6d Mon Sep 17 00:00:00 2001
+From: "Munoz, Obed N" <obed.n.munoz@intel.com>
+Date: Thu, 17 Dec 2015 14:14:27 -0600
 Subject: [PATCH] default config
 
+Signed-off-by: Munoz, Obed N <obed.n.munoz@intel.com>
 ---
  etc/heat/heat.conf.sample | 1377 +++++++++++++++++++++++++++++++++++++++++++++
  1 file changed, 1377 insertions(+)
@@ -10,7 +11,7 @@ Subject: [PATCH] default config
 
 diff --git a/etc/heat/heat.conf.sample b/etc/heat/heat.conf.sample
 new file mode 100644
-index 0000000..03cded7
+index 0000000..72300d6
 --- /dev/null
 +++ b/etc/heat/heat.conf.sample
 @@ -0,0 +1,1377 @@
@@ -308,7 +309,7 @@ index 0000000..03cded7
 +
 +# Use syslog for logging. Existing syslog format is DEPRECATED during I, and
 +# will change in J to honor RFC5424. (boolean value)
-+#use_syslog = false
++use_syslog = true
 +
 +# (Optional) Enables or disables syslog rfc5424 format for logging. If enabled,
 +# prefixes the MSG part of the syslog message with APP-NAME (RFC5424). The
@@ -1392,5 +1393,5 @@ index 0000000..03cded7
 +# another config option. (string value)
 +#heat_revision = unknown
 -- 
-2.4.3
+2.6.4
 
