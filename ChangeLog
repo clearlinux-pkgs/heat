@@ -1,6 +1,64 @@
 CHANGES
 =======
 
+5.0.1
+-----
+
+* Load template files only from their known source
+* Support unicode in parameter values
+* Do not return None when get_attr if res is in SNAPSHOT/CHECK
+* Make minimum default num_engine_workers>=4
+* Fix validation of server personality property
+* Imported Translations from Zanata
+* heat-manage resource_data_list
+* Fixes the error logic in resource_data_get_all()
+* Use negative timeout for convergence unittests
+* Updated from global requirements
+* Fixup ceilometerclient tests
+* Eliminate unnecessary sleeps during no-op update
+* Don't snapshot if server hasn't been created yet
+* Make sure update successful if there is encrypt param
+* Correct list_join function
+* Fix 'release' and 'state_set' for UPDATE action
+* Correct reset_state_on_error() handling
+* Neutron port, tolerate switching network name/id
+* Translate properties before update
+* Make SoftwareDeployment name updateable
+* Don't remove user from groups if groups don't change
+* Correct nova extension check before saving ports
+* Fix VolumeType projects property handling
+* Make Server software_config_transport updatable
+* add first reno-based release note
+* Don't remove role assignment if no change
+* Reauthenticate on token expiration
+* Add _show_resource to EncryptedVolumeType
+* Add reno for release notes management
+* Fix MagnumClientPluginTests
+* Fix HTTP error codes due to invalid templates
+* Ensure that stacks can't get stuck IN_PROGRESS
+* Copy the env to the backup stack in failed update
+* Reset stack status even when lock engine_id is None
+* Fix stack lock ActionInProgress in the admin case
+* Allow in-place updates for all compatible types
+* Log an error on an uncaught exception in a thread
+* Catch exceptions for restore_prev_rsrc/prepare_for_replace
+* Fix mixin class clients
+* Break circular references in client plugins
+* Try polling swift object before creating stack
+* Fix purging of raw_template rows
+* Resource.has_interface check get_resource_info result
+* StackUser tolerate missing user on delete
+* Assert has_calls in tests
+* Allow 'allocation_pools' updatable for neutron subnet
+* Fix handling of FAILED ResourceGroup members on rolling update
+* Do nothing in prepare_for_replace if port not created
+* Use correct constraint for allowed_address_pairs
+* Updated from global requirements
+* Imported Translations from Zanata
+* Add more informative error during parsing
+* Allow get_attr: [res_name] format to get all attribute
+* Fix parameter_defaults for comma_delimited_list and json
+
 5.0.0
 -----
 
@@ -17,6 +75,7 @@ CHANGES
 * Convert to int can cause different error messages
 * Add value_specs property for Firewall Resource
 * Make sure we can use nova-network
+* Sync integration test requirements
 * Update .gitreview for stable/liberty
 * Only fail Volume deletion in 'error_deleting' state
 
