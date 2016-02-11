@@ -1,7 +1,7 @@
-From 20714c87cd162ff0ce296ec9dd746a950e9dcb6d Mon Sep 17 00:00:00 2001
+From 72285e6655f4f37b6205d41c89d8e4ad3680c15f Mon Sep 17 00:00:00 2001
 From: "Munoz, Obed N" <obed.n.munoz@intel.com>
-Date: Thu, 17 Dec 2015 14:14:27 -0600
-Subject: [PATCH] default config
+Date: Thu, 11 Feb 2016 16:59:27 -0600
+Subject: [PATCH] default-config
 
 Signed-off-by: Munoz, Obed N <obed.n.munoz@intel.com>
 ---
@@ -11,7 +11,7 @@ Signed-off-by: Munoz, Obed N <obed.n.munoz@intel.com>
 
 diff --git a/etc/heat/heat.conf.sample b/etc/heat/heat.conf.sample
 new file mode 100644
-index 0000000..72300d6
+index 0000000..89f8ffb
 --- /dev/null
 +++ b/etc/heat/heat.conf.sample
 @@ -0,0 +1,1377 @@
@@ -305,11 +305,11 @@ index 0000000..72300d6
 +# (Optional) The base directory used for relative --log-file paths. (string
 +# value)
 +# Deprecated group/name - [DEFAULT]/logdir
-+log_dir = /var/log/heat
++# log_dir = /var/log/heat
 +
 +# Use syslog for logging. Existing syslog format is DEPRECATED during I, and
 +# will change in J to honor RFC5424. (boolean value)
-+use_syslog = true
++use_syslog = True
 +
 +# (Optional) Enables or disables syslog rfc5424 format for logging. If enabled,
 +# prefixes the MSG part of the syslog message with APP-NAME (RFC5424). The
@@ -1393,5 +1393,5 @@ index 0000000..72300d6
 +# another config option. (string value)
 +#heat_revision = unknown
 -- 
-2.6.4
+2.7.1
 
