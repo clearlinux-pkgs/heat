@@ -1,87 +1,798 @@
 CHANGES
 =======
 
-5.0.1
+6.0.0
 -----
 
-* Load template files only from their known source
-* Support unicode in parameter values
-* Do not return None when get_attr if res is in SNAPSHOT/CHECK
-* Make minimum default num_engine_workers>=4
-* Fix validation of server personality property
+* Sync integration tests requirements
+* Revert "Check RBAC policy for nested stacks"
 * Imported Translations from Zanata
-* heat-manage resource_data_list
-* Fixes the error logic in resource_data_get_all()
-* Use negative timeout for convergence unittests
+* Add translation rule to delete ssh auth key from Magnum baymodel
+
+6.0.0.0rc2
+----------
+
+* Increase timeout of WaitCondition due to ConcurrentTransactions
+* Imported Translations from Zanata
+* Fix update issues with autoscaling group
+* Avoid cooldown when group size does not change
+* Imported Translations from Zanata
+* Remove property "ssh_authorized_key" from OS::Magnum::BayModel
+* Imported Translations from Zanata
+* Fix race condition for WaitCondition with several signals
+* Handling concurrent transactions in metadata_set method
+* Imported Translations from Zanata
+* Make sure to delete the credentials when stack deletion
+* Add retries to avoid dberror for user_creds_delete
+* Imported Translations from Zanata
+* Imported Translations from Zanata
+* Remove unknown parameters in patched update
+* Imported Translations from Zanata
+* Imported Translations from Zanata
+* Explicitly naming resources in "unsupported" warnings
+* Update .gitreview for stable/mitaka
+
+6.0.0.0rc1
+----------
+
+* Remove redundant lines in test_instance_group.py
+* Imported Translations from Zanata
+* Check RBAC policy for nested stacks
+* Make sure create ceilometer alarm successful
+* Move launchconfig reference validation to validate()
+* Add functional lbaas v2 tests
+* Fix race condition in reload_on_sighup functional
+* Resolve name/id using translation rules for Server
+* Fixes external hyperlink format in heat architecture doc
+* Allow using 'get_param' for 'deletion_policy' section
+* Don't raise oslo_db exceptions from heat
+* Don't encrypt default parameters in heat-manage encrypt script
+* Moved CORS middleware configuration into oslo-config-generator
+* Make ConcurrentTransaction exception common
+* Ignore image and flavor validations
+* Make backup stack naming more consistent
+* Fix prepare_for_replace/restore_prev_rsrc handing for server
 * Updated from global requirements
+* Unit tests: compare stack names in PhysName
+* Fix stack preview
+* Skip the in-built dependencies while validating template
+* Handle network names in Manila resources
+* Don't RESOLVE translate in resource init
+* Imported Translations from Zanata
+* Modify the message of ERROR in stack_cancel_update()
+* Fix AWS::EC2::SecurityGroup update problem
+* Refactor validation of arguments to 'repeat' intrinsic function
+* Get watch_url via get_heat_cfn_url
+* Imported Translations from Zanata
+* Remove unused stuff in test_launch_config.py
+* Allow resource name as reference if using depends_on
+* Catch exceptions calculating implicit dependencies
+* Remove required=True for name property
+* Convergence: Avoid cache when resolving input data
+* Convergence: Enable resource type aliasing test
+* Fix for resource search with invalid filter keys
+* Fix potential race condition in lbaas v2 logic
+* Heat integration tests failing against https endpoints
+* Resolve name/id using translation rules
+* Updated from global requirements
+* Resolve arguments to 'repeat' function at runtime
+* Make auth_url lookup dynamic
+* Fix error msg for wrong auth_url in functional
+* Use transactions instead of session.flush
+* Fix problems in unicode template support
+* Fixed incorrect exception raising in ManilaShare
+* Regenerated heat_integrationtests.conf.sample
+* Don't translate when loading resource from db
+* Remove unused LOG variables
+* Add reno for barbican container
+* Add user_data_update_policy property to OS::Nova::Server
+* Do not try to save event resource if too big for db column
+
+6.0.0.0b3
+---------
+
+* Rally tests plugins for Heat
+* Add release notes for new v2 Load Balancer resources
+* Ignore template res types during guideline checks
+* Updated from global requirements
+* Return HTTPBadRequest error from API for immutable parameters
+* LBaas v2 HealthMonitor
+* Ignore TypeErrors on old properties during update
+* Clean initial registered messages
+* Add guide about using Rally on Heat gates
+* Remove unused pngmath Sphinx extension
+* Re-add str_replace parameter validation, and fix test
+* Stop using Hidden property for RandomString
+* LBaaS v2 Pool Member
+* LBaaS v2 Pool
+* LBaaS v2 Listener
+* Add release notes for senlin resources
+* Add release notes for Immutable Parameters feature
+* Add functional test for immutable parameters
+* Fix all trailing spaces for custom guidelines
+* Fix all method errors for custom guidelines
+* Fix resources descriptions for custom guidelines
+* Fix all attributes error for custom guidelines
+* Fix all properties errors for custom guidelines
+* LBaaS v2 Loadbalancer
+* Allow external fixed IP address to be set on Router in template
+* Release note for resource update restrict
+* Updated from global requirements
+* StackResource/RemoteStack replacement
+* Rename test classes for consistency
+* Adding index to stack.owner_id
+* Add one general testing of resource_mapping
+* Add OS::Senlin::Node resource
+* Resource mark unhealthy RPC and ReST API
+* Swift container get_live_state implementation
+* Make ZaqarEventSinkTest more lenient
+* Optimize nested stack status check
+* Updated from global requirements
+* Stop using first_address Hidden attribute in tests
+* Mark 'replacement_policy' as deprecated
+* Fix a small typo again
+* Add retries to Nova client methods for connection errors
+* Revert "Check RBAC policy for nested stacks"
+* Immutable parameters
+* Add image/flavor validation to Rackspace Server
+* Add parse_live_resource_data for zaqar queue
+* Remove usage of WritableLogger from oslo_log
+* Add function tests for event sinks
+* Updated from global requirements
+* Don't resolve outputs during polling stack status
+* Use yaml.safe_dump instead of yaml.dump
+* Use oslo.config fixture to avoid gate break
+* Updated from global requirements
+* Add _show_resource method to zaqar queue
+* Implement custom guidelines
+* Pass all options when doing keystone discovery
+* Add functional tests for update restrict
+* Convergence replace restriction for type change
+* Fix several nits in os_database trove resource
+* Fix test_encryption_vol_type to take admin creds from conf
+* Add transaction context for stack update
+* Make AutoScale sub-template a string instead of map
+* Alphabetized heat.constraints for cleanliness
+* Cleanup neutron finder functions
+* Remove server uuid property specific checks
+* Use caching for resource name/id finders
+* Ignore connection error when testing load balancer
+* Fix a small typo
+* Refactor mistral workflow handle_signal
+* Don't check existence of keystone resource for empty value
+* Map RequestLimitExceeded exception in heat-cfn-api
+* Add OS::Senlin::Policy resource
+* Force config_drive and transport for sw config
+* Don't use hidden image property in sahara cluster
+* Adds release notes for resource-search
+* Refactor OS::Senlin::Profile resource
+* Convergence: Check resource class before updating
+* Add descriptions to openstack resources (Part 3)
+* Make Functions unhashable
+* Updated from global requirements
+* Eliminate bogus deprecation warning
+* Build list of enabled os-collect-config collectors
+* Create watch tasks in its own thread
+* Use yaml.safe_load() instead of yaml.load()
+* Stack resource search
+* Use oslo.utils.reflection to extract class name
+* Add OS::Senlin::Receiver Resource
+* Add senlin constraints
+* Don't pass both network_id and port_id when attach interface
+* Fix parameter constraint formatting
+* Release notes for server-side env resolution
+* Add support for launch_stack launchConfiguration type
+* Don't useless fetch resources on update
+* Check for resource_id when resolving attributes
+* Simplify event count by stack
+* Move Developer guides to separate directory
+* Fix rally internal Heat job
+* Don't query stack tags twice
+* Do not convert resource_id to string
+* Add image/flavor validation to OS::Nova::Server
+* Updated from global requirements
+* Add note about cron trigger live state impl
+* Add test for performance in constraint validation
+* Don't use convergence deletion way under non-convergence engine
+* Hook into environment merging on server
+* Glance::Image get_live_state implementation
+* Add more validation to barbican order
+* Retry on DBDeadlock
+* Fix scheduler compatibility with Python 3.7 harder
+* Ignore errors on old properties during update
+* Always do cleanup after a failed stack update
+* Updated from global requirements
+* Revert "Resolve name/id using translation rules"
+* Separate get_live_state on several methods
+* Handle missing plugin in is_service_available
+* Add post hooks
+* Remove db refresh in Stack object get
+* Resolve name/id using translation rules
+* Convergence: Consider resources from old template
+* Mark shared property in Firewall unsupported
+* Add test for zaqar-based wait conditions
+* Add note about template format for url reference
+* Add new translation rule to resolve with client
+* Refactor property translation rule(2/2)
+* Refactor property translation rule(1/2)
+* Restrict update/replace of resource
+* Fix a grammatical mistake of the example online
+* Replace ex.message with exception_to_unicode(ex)
+* Add OS::Barbican::*Container
+* Fix zaqar queue creation workflow
+* Don't mask exceptions in is_service_available
+* Refactor resource specific replace logic
+* Add length validation to _validate_stack_name()
+* Updated from global requirements
+* Don't recompute metadata after clearing a user hook
+* Log all writes to resource metadata
+* Updated validation for OS::Trove::Instance
+* Add floating_ip property to Nova::Server nics
+* Release notes for Keystone Region resource plugin
+* Fix imports for pep8 check
+* Release notes for template validation improvements
+* Updated from global requirements
+* Remove extraneous fields from Cloud LoadBalancer access list
+* Adds router_external Boolean to ProviderNet
+* Accommodate v2 and v3 auth for integration tests
+* Adds ignore_errors for template_validate REST API
+* Adds ignore_errors for template_validate in engine
+* Use OSprofiler options consolidated in lib itself
+* Refactor StackResource create/update stack args
+* Translate all properties during update
+* Updated from global requirements
+* Fix update preview to handle nested stacks
+* Allow str_replace to reference parameters/attributes
+* Add snapshot_support property to ShareType
+* Fix some word spellings
+* Don't update the name of keystone resources if name don't change
+* Check RBAC policy for nested stacks
+* Add validation for glance image
+* Allow updates for OS::Trove::Instance
+* Edit backslashes for lines continuations
+* Fix import order
+* Enable pep8 to check files in directory tools
+* Remove implementation_signature check
+* Add default value to secret_type in Barbican::Secret
+* Add release notes for new added resource OS::Neutron::RBACPolicy
+* Adds validation to support 'port' only if using neutron
+* Assign defaults for Cloud Loadbalancer node type and weight
+* Add environment_files to REST and RPC APIs
+* Refactor get_live_state using during update
+* Add OS::Neutron::RBACPolicy resource
+* Allow stack_context to create convergence and legacy stacks
+* Don't log a failed software deployment at ERROR level
+* Prevent phantom user hooks
+* Add Rackspace::Cloud::LBNode
+* Stop using hidden property l3_agent_id
+* Add _show_resource to Neutron SecurityGroup
+* Add test for stack outputs
+* Add validation to barbican order
+* Update heat_integrationtests.conf.sample
+* Don't pass [] for fixed_ips to neutron
+* Fix software configuration doc
+* Use custom find functions for image lookup
+* Updated from global requirements
+* Add timeout property for resolving attributes
+* Return stack outputs when in progress
+* Catch correct not found error in senlin plugin
+* Allow StackLock to be used as a context manager
+* Remove redundant _stack_rand_name from func tests
+* Handle NotFound in Stack get_all
+* Updated from global requirements
+* Software config zaqar integration tests
+* Update resource type exceptions with error_code
+* Updated from global requirements
+* Add OBJ_PROJECT_NAMESPACE for Heat project
+* Make JsonField actually do it's work
+* RPC API: Define correct constants for resource data
+* ReST API: Use constants in get_allowed_params whitelists
+* Don't calculate attributes for metadata request
+* Filter out deployments with None config
+* Add heat contribution guidelines
+* InstanceGroup to keep FAILED resources in template
+* Updated from global requirements
+* Ignore ValueError when adding dependencies
+* Refactor handle_update to use prop_diff
+* Fix port handle_update to use prop_diff
+* Add REST API for stack export
+* Adds RPC api for export action
+* Update OS::Magnum::BayModel with latest Magnum changes
+* Add default values to several Glance::Image props
+* Remove warnings in heat
+* Convergence: Fix FnGetAtt to fetch value from cache_data
+* Add handle_update for senlin cluster
+
+6.0.0.0b2
+---------
+
+* Push deployments metadata on delete
+* Make ASG resource work when no lb is specified
+* Updated from global requirements
+* Provide software deployment id on create
+* Edit backslashes for lines continuation
+* Replace the word "printf'd" with "formatted"
+* Support neutron address scope
+* deprecate module heat.api.middleware.ssl
+* JSON size violation gives a bad error with nested templates
+* Attempt to delete internal resources if create server fail
+* Load template files only from their known source
+* FunctionalTests don't run non-test check_skip_test
+* Unify workers options for API services
+* test_preview_update only create one stack per test
+* Fix update preview to consider type comparison
+* Imported Translations from Zanata
+* Do not pass both port-id and fixed-ip to create server
+* Don't allow specify fixed_ip and port at the same time
+* Use correct user_domain_id when create trust auth plugin
+* Add entity and name attribute to EntityNotFound
+* Support unicode in parameter values
+* Incorrect grammar with dot
+* Use wrapped message in error log
+* use stderr for error echo message
+* Updated from global requirements
+* Update links for CLI Reference
+* Make metadata_server_url config optional
+* Convert from mox to mock in test_signal
+* Handle invalid stack names which are non-string
+* Raise with traceback
+* Remove extra whitespace
+* Remove unconditional return of user_id
+* Fix for the deprecated library function
 * Fixup ceilometerclient tests
-* Eliminate unnecessary sleeps during no-op update
-* Don't snapshot if server hasn't been created yet
-* Make sure update successful if there is encrypt param
-* Correct list_join function
-* Fix 'release' and 'state_set' for UPDATE action
-* Correct reset_state_on_error() handling
+* Add release notes for event-transport
+* Make volume type is_public property updatable
+* Set DB max_overflow to match thread pool size
+* Use client_plugin as a function
+* Don't wait for undefined actions in SoftwareComponent
+* Add descriptions to all openstack resources (Part 2)
+* Create zaqar queues with the proper token
+* Enable commented software component test
+* Make minimum default num_engine_workers>=4
+* Fix OS::Neutron:Net handle_update
+* Fix provider_net resource update
+* Added Keystone and RequestID headers to CORS middleware
+* Optimize the fault map for EntityNotFound
+* Populate context roles when using stored context
+* Updated from global requirements
+* Add tests for heat template apis
+* Add resolve_outputs parameter to stacks API
+* Convergence: Pick resource from dead engine worker
+* Fix race condition in tests with swift key
+* Fix validation of server personality property
+* Improve gateway_ip updation for subnet
+* Remove stray debug from context.py
+* Event transport
+* Replace deprecated LOG.warn with LOG.warning
+* Use user_domain for password auth_plugin
+* Fix resource definition loading in resource groups
+* Revert "Disable CeilometerAlarmTest.test_alarm"
+* Fix grammatical mistake, Changed character from "an" to "a" in below files:
+* Pass domain id to ceilometer client
+* Init local request context with user/project domain infos
+* Replace logging lib
+* Replace assertTrue(isinstance()) with assertIsInstance()
+* Updated from global requirements
+* Add basic get_live_state implementation
+* Add join to workflow (mistral resource)
+* Add OS::Senlin::Profile resource
+* Add release note for bp/api-call-output
+* Using LOG.warning replace LOG.warn
+* Fix some inconsistency in docstrings
+* Use flavors.get when finding with id
+* Wrong usage of "an"
+* Make sure update access mode for volume in available
+* Wrong usage of "a"
+* Trivial: Remove unused logging import
+* Fix using mock return_value in unittests
+* Add descriptions to all openstack resources (Part 1)
+* Disable CeilometerAlarmTest.test_alarm
+* Remove defaults for handle_update parameters
+* Use create_with_template for RG create
+* Remove meaningless default value in __get__()
+* Add OS::Senlin::Cluster resource
+* Add release note for bp/support-host-aggregate
+* Add release note for bp/support-neutron-qos
+* replace deprecated oslo_messaging _impl_messaging
+* Add neutron vpnaas configuration in integration tests
+* Support RackConnect V3 LB in Rackspace AutoScaleGroup Resource
+* Remove duplicate keys from dictionary
+* Added ResourceChain plugin
+* Neutron port allow switching between network_id and network
+* Use flavors.find interface to find flavors
+* remove the mutable default arguments "[]" or "{}"
+* Don't call neutron when there is no prop_diff
+* Updated from global requirements
+* Add note for subnet pool support
+* Enable simple json format in workflow signal
+* Fix database purge query
 * Neutron port, tolerate switching network name/id
-* Translate properties before update
+* Flag to observe live state for resources
+* Add neutron provider constraints
+* heat-manage resource_data_list
+* Make value_specs updatable for firewall resource
+* Fixes the error logic in resource_data_get_all()
+* Remove check for managed cloud role
 * Make SoftwareDeployment name updateable
+* Provide the QoS capability for port
+* Correct errors of HostAggregate handling
+* Use specified client service name for client usage
+* Stop ignore skipped crypt_operation option
+* Remove unused argument 'current_version'
+* Refactor neutron constraints
+* Fix _show_resource in Designate::Record
+* Fix property TTL in Designate::Domain
+* Provide QoS capability for neutron network
+* remove containers on delete
+* Make root_stack_id determination more robust
+* Updated from global requirements
+* Call _persist_state for UPDATE in 'state_set'
+* Fix min value in ttl range of Designate::Record
+* Use EntityNotFound instead of NotFound from Manila
+* Add validate_with_client in BaseCustomConstraint
+* Fix time mocking on wait condition timeout tests
+* Support neutron QoSBandwidthLimitRule resource plugin
+* Fix mocking in several tests causing excessive run-times
+* Remove unused LOG variable with logging import
+* Fix event filtering in event-show
 * Don't remove user from groups if groups don't change
-* Correct nova extension check before saving ports
-* Fix VolumeType projects property handling
-* Make Server software_config_transport updatable
-* add first reno-based release note
+* Updated from global requirements
+* Support neutron QoSPolicy resource plugin
+* Eliminate unnecessary sleeps during no-op update
+* Add trustee config group to sample config
+* Add tests for api calls show and list outputs
+* Use user id instead of user name in notification body
+* Re-enable ceilometer test
+* Skip CeilometerAlarmTest.test_alarm
+* Improve log messages from scheduler
+* Get rid of bogus debug logging in parameter groups
+* Make sure update successful if there is encrypt param
+* Correct reset_state_on_error() handling
+* Updated from global requirements
+* Improve output when output resolve raises error
+* Fix to send only one notification when update completes
+* Remove version from setup.cfg
+
+6.0.0.0b1
+---------
+
 * Don't remove role assignment if no change
-* Reauthenticate on token expiration
-* Add _show_resource to EncryptedVolumeType
+* add "unreleased" release notes page
+* Update OS::Magnum::BayModel to not require network_driver
+* Add subnetpool property to subnet resource
+* Add SubnetPool neutron Resource
+* Add neutron address_scope constraint
+* Allow many-to-one glob mapping in registry
+* Fix some line wrap problems in doc
+* Move update_policy parsing to Resource
+* Fix tox -e docs build in py3
+* Unhelpful error message when api-paste.ini is missing
+* Check resource_id before calling network delete
+* Fix some inconsistency in docstrings
+* Remove deprecated method
 * Add reno for release notes management
+* Add profile constraint to senlin_plugin
+* Use constants for URL schemes in template_resource
+* Refactor template_resource.generate_class()
+* Get rid of the Resource.resource_class() method
+* Add a separate get_class_to_instantiate() method to Environment
+* Raise EntityNotFound in get_resource_info()
+* Make Server software_config_transport updatable
+* Simplify and correct logic for updating SSL Termination
+* Reauthenticate on token expiration
+* Fix show output with unresolved stack outputs
+* Remove default value for mem_limit to keep up with docker-py
+* Use negative timeout for convergence unittests
+* Remove useless file_name value from test
+* Use EntityNotFound as super class for exceptions
+* Use EntityNotFound instead of ServiceNotFound
+* Use EntityNotFound instead of WatchRuleNotFound
+* Add 'parent' property for keystone project
+* Updated from global requirements
+* Fix Template Version in Hot-Guide
+* Skip some functional tests for convergence until fixed
+* Convergence: Persist state for stack adopt
+* Optimize "open" method with context manager
+* Convergence: send notification when a stack action starts
+* Add _show_resource to EncryptedVolumeType
+* Fix VolumeType projects property handling
+* Updated from global requirements
+* Change namespace for Heat resources and tests
+* Change namespace for Barbican tests
+* Use EntityNotFound instead of FlavorMissing
+* Convergence: Re-trigger failed resource for latest traversal
+* Convergence: Concurrency subtle issues
+* Convergence: Load resource stack with correct template
+* Remove port test from floating_ip test module
+* Better schema for Rackspace::AutoScale::Group image and flavor
+* Correct the spelling for the word constraint
+* Updates keystone region constraints for endpoint
+* Adds OS::Keystone::Region resource plug-in
+* Translate properties before update
+* Remove the commenting code
+* Fix variable 'url' referenced before assignment
+* Fix some inconsistency in docstrings
+* Support shares in sahara clusters
+* Support shares in sahara cluster templates
+* Wrong entity name for Host Aggregate resource
 * Fix MagnumClientPluginTests
+* Fix wait condition doc sample
+* Don't snapshot if server hasn't been created yet
+* Add 'enabled' property for keystone endpoint
+* Skip senlin_plugin tests until bug #1519185 is fixed
+* Correctly determine when SSL termination config changes
+* Add references on template versions in documentation
+* Change namespace for Nova Host Aggregate test
 * Fix HTTP error codes due to invalid templates
+* Use EntityNotFound instead of UserKeyPairMissing
+* Split abandon into pre-abandon(export) and abandon
+* Don't force Fn::Select index to integer
+* Updated from global requirements
+* Change namespace for Ceilometer resources and tests
+* Change namespace for Cinder resources and tests
+* Change namespace for Glance resources and tests
+* Change namespace for Keystone tests
+* Change namespace for Magnum tests
+* Change namespace for Manila tests
+* Change namespace for Mistral tests
+* Change namespace for Neutron tests
+* Use EntityNotFound instead of PhysicalResourceNotFound
+* Use EntityNotFound instead of ResourceTypeNotFound
+* Convergence: Fix duplicate events for stack actions
+* Use EntityNotFound instead of StackNotFound
+* Add senlin client
+* Define engine service in setUp()
+* Updated from global requirements
+* Implement pre-delete hook
+* Use attribute instead of passing parameter
+* Clarify convergence logging
+* Adds keystone.region constraint
+* Adds 5 backport db migration place holder for liberty
+* Fix ResetStateOnErrorTest.test_success
+* Change namespace for Swift tests
+* Change namespace for Zaqar and tests
+* Change namespace for Trove resources and tests
+* Change namespace for Sahara resources and tests
+* Change namespace for Nova resources and tests
+* Move kombu as a test dependency only
 * Ensure that stacks can't get stuck IN_PROGRESS
-* Copy the env to the backup stack in failed update
+* Register correct nova.host constraint
+* Do not use api-paste.ini osprofiler options
+* Add subnetpool custom constraint
+* Add resource OS::Nova::HostAggregate
 * Reset stack status even when lock engine_id is None
 * Fix stack lock ActionInProgress in the admin case
-* Allow in-place updates for all compatible types
-* Log an error on an uncaught exception in a thread
-* Catch exceptions for restore_prev_rsrc/prepare_for_replace
-* Fix mixin class clients
-* Break circular references in client plugins
-* Try polling swift object before creating stack
-* Fix purging of raw_template rows
-* Resource.has_interface check get_resource_info result
-* StackUser tolerate missing user on delete
-* Assert has_calls in tests
-* Allow 'allocation_pools' updatable for neutron subnet
-* Fix handling of FAILED ResourceGroup members on rolling update
-* Do nothing in prepare_for_replace if port not created
-* Use correct constraint for allowed_address_pairs
 * Updated from global requirements
+* Add Baymodel contraint to OS::Magnum::Bay
+* Allow in-place updates for all compatible types
+* Add nova.host constraint
+* Convergence: Avoid sync point delete for stack CREATE
+* Convergence: Fix unittest test_updated_time
+* Updated from global requirements
+* Correct list_join function
+* Remove unnecessary detachment
+* Adds get_region_id() in keystone client plugin
+* Remove the unnecessary log message
+* Remove unused common exception
+* Use flavor instead of flavour
+* Updated from global requirements
+* Add a test for environment change in failed update
+* Stack update to use _send_notification_and_add_event
+* Deprecate heat-keystone-setup
+* Copy the env to the backup stack in failed update
+* Use EntityNotFound instead of NovaNetworkNotFound
+* fix misspelled function name
+* Add caching for nova extensions
+* Updated from global requirements
+* Conditionally check for service extensions
+* Change to 'has_extension' for a test mock
+* Updated from global requirements
+* datetime.datetime.utcnow() should be replaced
+* Fix garbled docstrings
+* Fix scheduler compatibility with Python 3.7
+* Add tests for pre-create hooks
+* Add `is_public` property to Nova Flavor resource
+* Support 'multiattach' for cinder volume
+* Remove default None value for config options
+* Do not resolve keystone values if it is None
+* Add 'enabled' property for keystone service
+* LBaaS v2 custom constraints
+* Make nova resources available based on os-api ext
+* Improve UserWarning messages
+* Always process node addresses
+* Add caching to neutron extensions
+* Adds error_code in heat exceptions
+* Enable scenario test 'test_autoscaling_loadbalancer_neutron'
+* Remove the redundant spaces in function doc
+* Log an error on an uncaught exception in a thread
+* Update instructions to generate GMR error reports
+* Skip scenario test 'test_autoscaling_loadbalancer_neutron'
+* Improve parameters obtaining logic from adopt stack data
+* Clean up convergence error message
+* Use pbr for installing wsgi scripts
+* Catch exceptions for restore_prev_rsrc/prepare_for_replace
+* Move function for member_definitions to grouputil
+* Use rsrc_defn_from_snippet for ResourceGroup
+* Don't set stack updated_time when creating it
+* Support shares in sahara node group templates
+* Change assertTrue(isinstance()) by optimal assert
+* Allow to update subnet without 'allocation_pools'
+* Raise StackValidationFailed on parameter validation
+* Updated from global requirements
+* Enable abandon option to nested resource
+* Add net_cidr constraint for destination of subnet
+* Allow 'allocation_pools' updatable for neutron subnet
+* Remove spurious logs from test_loguserdata
+* Fix grenade upgrade script dependency
+* Remove refresh in Stack update_and_save
+* Add APIs implementation for output functions
+* Add functions for outputs to heat service
+* Use ClientPlugin.ignore_not_found as a context manager
+* Use assertTrue/False instead of assertEqual(T/F)
+* Use assertIn and assertNotIn
+* Resource.has_interface check get_resource_info result
+* Use assertIsNone instead of assertEqual(None, ***)
+* Use correct constraint for allowed_address_pairs
+* Do nothing in prepare_for_replace if port not created
+* Fix handling of FAILED ResourceGroup members on rolling update
+* Updated from global requirements
+* Expand test in-progress workaround
+* Fix mixin class clients
+* Replaced mox usage with mock in test_swift
 * Imported Translations from Zanata
-* Add more informative error during parsing
+* replace git protocol by https
+* Implement new map_merge intrinsic function
+* Do not pass rich objects in Cloud LoadBalancer create
+* Do not pass rich objects in Cloud LoadBalancer update
+* Update OS::Magnum::BayModel with tls_disabled
+* Fix race condition in stack listing
+* Manually sync functional test requirements
+* Break circular references in client plugins
+* Replace github with openstack git repo
+* Refactor unit tests to support ExceptionFilters in clients
+* change stackforge url to openstack url
+* Updated from global requirements
+* Added CORS support to Heat
+* Add Bay to Magnum resources
+* Updated from global requirements
+* Unit test for checking that migrations don't cause downtime
+* Make neutron resources available based on service extensions
 * Allow get_attr: [res_name] format to get all attribute
+* Replaced mox with mock in test_metadata_refresh
+* Updated from global requirements
+* Add functional test for ResourceGroup rolling_update
+* Change support_status to HIDDEN in res props
+* Updated from global requirements
+* list_template_functions raises NotFound exception
+* Allow LBaas integration tests to dynamically skip
+* Add more informative error during parsing
+* Fix grenade shutdown script
+* improve readme content
+* Fix purging of raw_template rows
+* Delete previous template upon update
+* Use oslo_config IPOpt support
+* Replaced mox with mock in test_watch
+* Use oslo_config PortOpt support
+* StackUser tolerate missing user on delete
+* Updated from global requirements
 * Fix parameter_defaults for comma_delimited_list and json
+* Remove ceilometer specific config for grenade plugin
+* Remove unnecessary update_replace parameter
+* Update Baymodel in Magnum resources
+* Add signal_transport property to Heat wait conditions
+* Support update for sahara node group template
+* Encode Location header in utf-8
+* Use generated auth_token instead of that in context
+* Remove unneeded is_service_available
+* Updated from global requirements
+* Refactor keystone resources codes
+* Assign updated stack ID during stack update preview
+* Add stack tags to stack abandon output
+* Replaced mox with mock in test_loguserdata
+* Optimize test_server unit tests
+* Convergence: Fix restore on rollback for server and port
+* Remove [H405] and [H404] ignoring in tox.ini
+* Fix [H405] pep rule in heat/tests
+* Add port_extra_properties to Nova::Server nics
+* Add testresources used by oslo.db fixture
+* Do not return None when get_attr if res is in SNAPSHOT/CHECK
+* Correct expected and observed order of assertEqual
+* Updated from global requirements
+* py34: cleanup
+* Assert has_calls in tests
+* Fix [H405] pep rule in heat_integrationtests
+* Fix [H405] pep rule in heat/resources
+* Fix [H405] pep rule in bin
+* Fix [H405] pep rule in doc/source
+* Fix [H405] pep rule in contrib
+* Fix [H405] pep rule in heat/rpc
+* Fix [H405] pep rule in heat/objects
+* Fix [H405] pep rule in heat/common
+* Add OS::Sahara::ImageRegistry resource
+* Use LOG.error when no exception handler is used
+* Fix typo in document
+* Convergence: Fix to persist stack status in DB
 
 5.0.0
 -----
 
 * Do no net/subnet checks during validate
 * Correctly filter events on resource name
+* Updated from global requirements
 * Check if os-interface extension is present before saving ports
 * Fix translating for props with get_param value
+* Correctly filter events on resource name
+* Announce Python 3.4 support
+* Grenade: Run select heat_integrationtests instead of tempest smoke
 * Imported Translations from Zanata
+* Try polling swift object before creating stack
 * Include nested stacks in reset_stack_status
 * Update preview_update_stack to align with PATCH updates
 * Reduce frequency of logging environment resources
 * Fix action (CREATE) in progress error for TemplateResource/RG
+* Updated from global requirements
+* Do no net/subnet checks during validate
+* Organise doc links for Operating Heat
+* Aim first doc link list at end users
+* Align the docs intro text with the old wiki page
+* Fix translating for props with get_param value
+* Revert "Use the correct filter key in reset_stack_status"
+* Cleanup of Translations
+* Align update_policy section heading with HOT
+* Check if os-interface extension is present before saving ports
+* Add manila data source type to OS::Sahara::DataSource
+* Add functional test coverage for PATCH updates
+* Switch to mox3
+* Split engine service test cases (11)
+* Add _needs_update() to AWS::EC2::EIPAssociation
+* Include nested stacks in reset_stack_status
+* Use the correct filter key in reset_stack_status
+* Update preview_update_stack to align with PATCH updates
+* Fix action (CREATE) in progress error for TemplateResource/RG
+* Consolidate keystone v3 hacks
+* Imported Translations from Zanata
+* Convergence: Fix to use cache_data for FnGetRefId (3)
+* Convergence: Fix to use cache_data for FnGetRefId (2)
+* Convergence: Fix to use cache_data for FnGetRefId (1)
+* Change cinder client version to 2 for integration tests
+* Remove tests for _show_resource in manila
+* Use oslo.middleware SSLMiddleware
+* Convert to int can cause different error messages
+* Do not pass rich objects in Cloud LoadBalancer delete
+* Reduce frequency of logging environment resources
+* Add value_specs property for Firewall Resource
+* replace assert statement with unittest.assertXXX
+* py34: Fix integration tests
+* Add mitaka version '6.0.0' in doc
+* Make sure we can use nova-network
 * Cleanup of Translations
 * Convert to int can cause different error messages
-* Add value_specs property for Firewall Resource
-* Make sure we can use nova-network
-* Sync integration test requirements
+* Add node_processes validation to sahara node group
+* Make OS::Monasca::AlarmDefinition expression property non-updateable
+* Fix [H405] pep rule in heat/httpd
+* Fix [H405] pep rule in heat/cmd
+* Fix [H405] pep rule in heat/api
+* Remove dead code from StackResource update_with_template
 * Update .gitreview for stable/liberty
 * Only fail Volume deletion in 'error_deleting' state
+* Only fail Volume deletion in 'error_deleting' state
+* Add value_specs property for Firewall Resource
+* Some lambda were replaced on def
+* Don't inject extra config into neutron-vpnaas.conf
 
 5.0.0.0rc1
 ----------
 
+* Make sure we can use nova-network
+* Make ClientPlugin.ignore_not_found a context manager
+* Open Mitaka development
+* Fix file permissions
+* Make re-raising of client exceptions safer
+* py34: Get rid of py3-testlist
+* py34: heat.tests.api.*
+* py34: heat.tests.api.cfn
+* py34: test_loguserdata/test_ec2_token
+* py34: contrib resources
 * py34: heat.tests.mistral/convergence
 * py34: heat.tests.test_fault_middleware
 * Convergence: Fix to use cache_data for nested stack
@@ -92,6 +803,7 @@ CHANGES
 * Fix [H405] pep rule in heat/engine/cfn
 * Use root_stack_id for stack_count_total_resources
 * Add resource.root_stack_id column
+* Add integration tests for preview update
 * Change ignore-errors to ignore_errors
 * Add a functional test proving OS::Heat::None works with validate
 * Convert validate_template validation path
@@ -99,13 +811,20 @@ CHANGES
 * Fix [H405] pep rule in heat/engine/clients
 * Fix [H405] pep rule in heat/engine
 * Fix [H405] pep rule in heat/scaling
+* Delete children handle_delete testing (Sahara)
+* Delete children handle_delete testing (Nova)
+* Delete children handle_delete testing (Mistral)
+* Use rsrc_defn_from_snippet in heat AutoScalingGroup
+* Refactor rsrc_defn_from_snippet for template classes
 * fix : removing policies from mistral types
 * Support update for sahara cluster template
 * Add table of custom constraints to hot spec
 * Always return default via template-validate "Default"
+* Adding basic test to exercise the heat event APIs
 * Convergence: Work on IN_PROGRESS resources once lock acquired
 * Convergence: Assign current_template_id when resource fails
 * Add data-processing-cluster hidden tag
+* Assign parent_stack during validation
 * Handle replace and rollback cases for Server
 * Store external ports in Server data
 * Revert "Additional unit tests for update-preview"
@@ -115,6 +834,7 @@ CHANGES
 * Account for error status during volume delete
 * Add intrinsic creating port for server
 * Copy resource data in _delete_backup_stack
+* Remove tests for _show_resource in trove
 * Validate deletion policy during template parsing
 * Allow selectively disabling resource validation
 * Wire in files to template validate
@@ -170,6 +890,7 @@ CHANGES
 * Updated from global requirements
 * Retry if Swift objects are not available yet
 * Use self._resource_names() without size parameter
+* Fix code compatibility with Python 3
 * Fix for failing convergence functional tests
 * Remove SoftwareDeployment nova.server custom constraint
 * Round the elapsed time to the nearest second
@@ -201,6 +922,7 @@ CHANGES
 * Use parent handle_delete for keystone
 * Add immutable parameter for schema in pluginguide
 * Add show resource function to Keystone
+* Add OS::Sahara::JobBinary resource
 * Support string format 'tags' for stack preview
 * Clarify name of scaling resource_templates() function
 * Don't do unnecessary updates in ResourceGroup rolling updates
@@ -233,6 +955,7 @@ CHANGES
 * Updates resource type filtering with name, version
 * Search resource type based on version
 * Add console_scripts entry points for all heat services
+* Test case for resource_facade
 * Split engine service test cases (9)
 * Set correct tenant id when python-client init
 * To use id instead of name when making credentials from context
