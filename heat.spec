@@ -4,7 +4,7 @@
 #
 Name     : heat
 Version  : 6.0.0
-Release  : 27
+Release  : 28
 URL      : http://tarballs.openstack.org/heat/heat-6.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/heat/heat-6.0.0.tar.gz
 Source1  : heat-api-cfn.service
@@ -18,14 +18,19 @@ Requires: heat-bin
 Requires: heat-python
 Requires: heat-config
 Requires: heat-data
+BuildRequires : PasteDeploy-python
 BuildRequires : PyYAML-python
+BuildRequires : Routes-python
 BuildRequires : SQLAlchemy-python
 BuildRequires : WebOb-python
+BuildRequires : oslo.versionedobjects-python
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pluggy
 BuildRequires : py-python
+BuildRequires : pycrypto-python
 BuildRequires : pytest
+BuildRequires : python-barbicanclient-python
 BuildRequires : python-ceilometerclient-python
 BuildRequires : python-cinderclient-python
 BuildRequires : python-designateclient-python
@@ -85,9 +90,14 @@ data components for the heat package.
 %package python
 Summary: python components for the heat package.
 Group: Default
+Requires: PasteDeploy-python
 Requires: PyYAML-python
+Requires: Routes-python
 Requires: SQLAlchemy-python
 Requires: WebOb-python
+Requires: oslo.versionedobjects-python
+Requires: pycrypto-python
+Requires: python-barbicanclient-python
 Requires: python-ceilometerclient-python
 Requires: python-cinderclient-python
 Requires: python-designateclient-python
@@ -116,6 +126,8 @@ python components for the heat package.
 %patch1 -p1
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1484549423
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
@@ -125,9 +137,10 @@ export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python2.7/site-packages python2 setup.py test || :
 %install
+export SOURCE_DATE_EPOCH=1484549423
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot}
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
+python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
 mkdir -p %{buildroot}/usr/lib/systemd/system
 install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/heat-api-cfn.service
 install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/systemd/system/heat-api.service
@@ -143,6 +156,7 @@ install -p -D -m 644 etc/heat/heat.conf.sample %{buildroot}/usr/share/defaults/h
 
 %files
 %defattr(-,root,root,-)
+/usr/lib
 
 %files bin
 %defattr(-,root,root,-)
