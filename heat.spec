@@ -4,7 +4,7 @@
 #
 Name     : heat
 Version  : 6.0.0
-Release  : 28
+Release  : 29
 URL      : http://tarballs.openstack.org/heat/heat-6.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/heat/heat-6.0.0.tar.gz
 Source1  : heat-api-cfn.service
@@ -18,42 +18,73 @@ Requires: heat-bin
 Requires: heat-python
 Requires: heat-config
 Requires: heat-data
-BuildRequires : PasteDeploy-python
-BuildRequires : PyYAML-python
-BuildRequires : Routes-python
-BuildRequires : SQLAlchemy-python
-BuildRequires : WebOb-python
-BuildRequires : oslo.versionedobjects-python
+Requires: Babel
+Requires: PasteDeploy
+Requires: PyYAML
+Requires: Routes
+Requires: SQLAlchemy
+Requires: WebOb
+Requires: croniter
+Requires: cryptography
+Requires: debtcollector
+Requires: docker-py
+Requires: eventlet
+Requires: greenlet
+Requires: kombu
+Requires: lxml
+Requires: netaddr
+Requires: oslo.cache
+Requires: oslo.concurrency
+Requires: oslo.config
+Requires: oslo.context
+Requires: oslo.db
+Requires: oslo.i18n
+Requires: oslo.log
+Requires: oslo.messaging
+Requires: oslo.middleware
+Requires: oslo.policy
+Requires: oslo.reports
+Requires: oslo.serialization
+Requires: oslo.service
+Requires: oslo.utils
+Requires: oslo.versionedobjects
+Requires: osprofiler
+Requires: paramiko
+Requires: pbr
+Requires: pycrypto
+Requires: python-barbicanclient
+Requires: python-ceilometerclient
+Requires: python-cinderclient
+Requires: python-designateclient
+Requires: python-glanceclient
+Requires: python-heatclient
+Requires: python-keystoneclient
+Requires: python-magnumclient
+Requires: python-manilaclient
+Requires: python-mistralclient
+Requires: python-neutronclient
+Requires: python-novaclient
+Requires: python-openstackclient
+Requires: python-saharaclient
+Requires: python-senlinclient
+Requires: python-swiftclient
+Requires: python-troveclient
+Requires: python-zaqarclient
+Requires: pytz
+Requires: requests
+Requires: retrying
+Requires: six
+Requires: sqlalchemy-migrate
+Requires: stevedore
+Requires: testrepository
+Requires: testscenarios
+Requires: testtools
+BuildRequires : configparser-python
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : pluggy
-BuildRequires : py-python
-BuildRequires : pycrypto-python
-BuildRequires : pytest
-BuildRequires : python-barbicanclient-python
-BuildRequires : python-ceilometerclient-python
-BuildRequires : python-cinderclient-python
-BuildRequires : python-designateclient-python
 BuildRequires : python-dev
-BuildRequires : python-glanceclient-python
-BuildRequires : python-magnumclient-python
-BuildRequires : python-manilaclient-python
-BuildRequires : python-mistralclient-python
-BuildRequires : python-neutronclient-python
-BuildRequires : python-novaclient-python
-BuildRequires : python-saharaclient-python
-BuildRequires : python-senlinclient-python
-BuildRequires : python-troveclient-python
-BuildRequires : python-zaqarclient-python
 BuildRequires : python3-dev
-BuildRequires : pytz-python
-BuildRequires : requests-python
-BuildRequires : retrying-python
 BuildRequires : setuptools
-BuildRequires : sqlalchemy-migrate-python
-BuildRequires : stevedore
-BuildRequires : tox
-BuildRequires : virtualenv
 Patch1: 0001-default-config.patch
 
 %description
@@ -90,32 +121,6 @@ data components for the heat package.
 %package python
 Summary: python components for the heat package.
 Group: Default
-Requires: PasteDeploy-python
-Requires: PyYAML-python
-Requires: Routes-python
-Requires: SQLAlchemy-python
-Requires: WebOb-python
-Requires: oslo.versionedobjects-python
-Requires: pycrypto-python
-Requires: python-barbicanclient-python
-Requires: python-ceilometerclient-python
-Requires: python-cinderclient-python
-Requires: python-designateclient-python
-Requires: python-glanceclient-python
-Requires: python-magnumclient-python
-Requires: python-manilaclient-python
-Requires: python-mistralclient-python
-Requires: python-neutronclient-python
-Requires: python-novaclient-python
-Requires: python-saharaclient-python
-Requires: python-senlinclient-python
-Requires: python-troveclient-python
-Requires: python-zaqarclient-python
-Requires: pytz-python
-Requires: requests-python
-Requires: retrying-python
-Requires: sqlalchemy-migrate-python
-Requires: stevedore
 
 %description python
 python components for the heat package.
@@ -127,17 +132,12 @@ python components for the heat package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1484549423
+export SOURCE_DATE_EPOCH=1489335724
 python2 setup.py build -b py2
 python3 setup.py build -b py3
 
-%check
-export http_proxy=http://127.0.0.1:9/
-export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python2.7/site-packages python2 setup.py test || :
 %install
-export SOURCE_DATE_EPOCH=1484549423
+export SOURCE_DATE_EPOCH=1489335724
 rm -rf %{buildroot}
 python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
 python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
@@ -156,7 +156,6 @@ install -p -D -m 644 etc/heat/heat.conf.sample %{buildroot}/usr/share/defaults/h
 
 %files
 %defattr(-,root,root,-)
-/usr/lib
 
 %files bin
 %defattr(-,root,root,-)
