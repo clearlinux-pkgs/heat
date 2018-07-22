@@ -4,7 +4,7 @@
 #
 Name     : heat
 Version  : 6.0.0
-Release  : 29
+Release  : 30
 URL      : http://tarballs.openstack.org/heat/heat-6.0.0.tar.gz
 Source0  : http://tarballs.openstack.org/heat/heat-6.0.0.tar.gz
 Source1  : heat-api-cfn.service
@@ -15,21 +15,23 @@ Summary  : OpenStack Orchestration
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: heat-bin
-Requires: heat-python
+Requires: heat-python3
 Requires: heat-config
 Requires: heat-data
+Requires: heat-license
+Requires: heat-python
 Requires: Babel
 Requires: PasteDeploy
 Requires: PyYAML
 Requires: Routes
 Requires: SQLAlchemy
 Requires: WebOb
-Requires: croniter
 Requires: cryptography
 Requires: debtcollector
 Requires: docker-py
 Requires: eventlet
 Requires: greenlet
+Requires: keystonemiddleware
 Requires: kombu
 Requires: lxml
 Requires: netaddr
@@ -79,24 +81,32 @@ Requires: stevedore
 Requires: testrepository
 Requires: testscenarios
 Requires: testtools
-BuildRequires : configparser-python
+BuildRequires : buildreq-distutils3
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-dev
 BuildRequires : python3-dev
 BuildRequires : setuptools
 Patch1: 0001-default-config.patch
 
 %description
-This is a database migration repository.
-More information at
-https://git.openstack.org/cgit/openstack/sqlalchemy-migrate
+Heat
+        ====
+        
+        Heat is a service to orchestrate multiple composite cloud applications using
+        templates, through both an OpenStack-native REST API and a
+        CloudFormation-compatible Query API.
+        
+        Why heat? It makes the clouds rise and keeps them there.
+        
+        Getting Started
+        ---------------
 
 %package bin
 Summary: bin components for the heat package.
 Group: Binaries
 Requires: heat-data
 Requires: heat-config
+Requires: heat-license
 
 %description bin
 bin components for the heat package.
@@ -118,12 +128,30 @@ Group: Data
 data components for the heat package.
 
 
+%package license
+Summary: license components for the heat package.
+Group: Default
+
+%description license
+license components for the heat package.
+
+
 %package python
 Summary: python components for the heat package.
 Group: Default
+Requires: heat-python3
 
 %description python
 python components for the heat package.
+
+
+%package python3
+Summary: python3 components for the heat package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the heat package.
 
 
 %prep
@@ -131,16 +159,21 @@ python components for the heat package.
 %patch1 -p1
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1489335724
-python2 setup.py build -b py2
+export SOURCE_DATE_EPOCH=1532218658
 python3 setup.py build -b py3
 
 %install
-export SOURCE_DATE_EPOCH=1489335724
 rm -rf %{buildroot}
-python2 -tt setup.py build -b py2 install --root=%{buildroot} --force
-python3 -tt setup.py build -b py3 install --root=%{buildroot} --force
+mkdir -p %{buildroot}/usr/share/doc/heat
+cp LICENSE %{buildroot}/usr/share/doc/heat/LICENSE
+python3 -tt setup.py build -b py3 install --root=%{buildroot}
+echo ----[ mark ]----
+cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
+echo ----[ mark ]----
 mkdir -p %{buildroot}/usr/lib/systemd/system
 install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/heat-api-cfn.service
 install -m 0644 %{SOURCE2} %{buildroot}/usr/lib/systemd/system/heat-api.service
@@ -184,6 +217,13 @@ install -p -D -m 644 etc/heat/heat.conf.sample %{buildroot}/usr/share/defaults/h
 /usr/share/defaults/heat/heat.conf
 /usr/share/defaults/heat/policy.json
 
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/heat/LICENSE
+
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+
+%files python3
+%defattr(-,root,root,-)
+/usr/lib/python3*/*
