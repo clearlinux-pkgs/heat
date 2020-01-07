@@ -6,7 +6,7 @@
 #
 Name     : heat
 Version  : 8.0.7
-Release  : 36
+Release  : 37
 URL      : http://tarballs.openstack.org/heat/heat-8.0.7.tar.gz
 Source0  : http://tarballs.openstack.org/heat/heat-8.0.7.tar.gz
 Source1  : heat-api-cfn.service
