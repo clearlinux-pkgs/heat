@@ -6,14 +6,14 @@
 #
 Name     : heat
 Version  : 8.0.7
-Release  : 37
+Release  : 38
 URL      : http://tarballs.openstack.org/heat/heat-8.0.7.tar.gz
 Source0  : http://tarballs.openstack.org/heat/heat-8.0.7.tar.gz
 Source1  : heat-api-cfn.service
 Source2  : heat-api.service
 Source3  : heat-engine.service
 Source4  : heat.tmpfiles
-Source99 : http://tarballs.openstack.org/heat/heat-8.0.7.tar.gz.asc
+Source5  : http://tarballs.openstack.org/heat/heat-8.0.7.tar.gz.asc
 Summary  : OpenStack Orchestration
 Group    : Development/Tools
 License  : Apache-2.0
@@ -80,13 +80,73 @@ Requires: six
 Requires: sqlalchemy-migrate
 Requires: stevedore
 Requires: tenacity
+BuildRequires : Babel
+BuildRequires : PasteDeploy
+BuildRequires : PyYAML
+BuildRequires : Routes
+BuildRequires : SQLAlchemy
+BuildRequires : WebOb
 BuildRequires : buildreq-distutils3
+BuildRequires : cryptography
+BuildRequires : debtcollector
+BuildRequires : docker-py
+BuildRequires : eventlet
+BuildRequires : keystoneauth1
+BuildRequires : keystonemiddleware
+BuildRequires : lxml
+BuildRequires : netaddr
+BuildRequires : oslo.cache
+BuildRequires : oslo.concurrency
+BuildRequires : oslo.config
+BuildRequires : oslo.context
+BuildRequires : oslo.db
+BuildRequires : oslo.i18n
+BuildRequires : oslo.log
+BuildRequires : oslo.messaging
+BuildRequires : oslo.middleware
+BuildRequires : oslo.policy
+BuildRequires : oslo.reports
+BuildRequires : oslo.serialization
+BuildRequires : oslo.service
+BuildRequires : oslo.utils
+BuildRequires : oslo.versionedobjects
+BuildRequires : osprofiler
 BuildRequires : pbr
+BuildRequires : pycrypto
+BuildRequires : python-barbicanclient
+BuildRequires : python-ceilometerclient
+BuildRequires : python-cinderclient
+BuildRequires : python-designateclient
+BuildRequires : python-glanceclient
+BuildRequires : python-heatclient
+BuildRequires : python-keystoneclient
+BuildRequires : python-magnumclient
+BuildRequires : python-manilaclient
+BuildRequires : python-mistralclient
+BuildRequires : python-neutronclient
+BuildRequires : python-novaclient
+BuildRequires : python-openstackclient
+BuildRequires : python-saharaclient
+BuildRequires : python-senlinclient
+BuildRequires : python-swiftclient
+BuildRequires : python-troveclient
+BuildRequires : python-zaqarclient
+BuildRequires : pytz
+BuildRequires : requests
+BuildRequires : six
+BuildRequires : sqlalchemy-migrate
+BuildRequires : stevedore
+BuildRequires : tenacity
 Patch1: 0001-default-config.patch
 
 %description
-Team and repository tags
-        ========================
+This directory contains rally benchmark scenarios to be run by OpenStack CI.
+Structure:
+* heat.yaml is rally task that will be run in gates
+* plugins - directory where you can add rally plugins. So you don't need
+to merge benchmark in scenarios in rally to be able to run them in heat.
+* extra - all files from this directory will be copied to gates, so you will
+be able to use absolute path in rally tasks. Files will be in ~/.rally/extra/*
 
 %package bin
 Summary: bin components for the heat package.
@@ -152,14 +212,21 @@ services components for the heat package.
 
 %prep
 %setup -q -n heat-8.0.7
+cd %{_builddir}/heat-8.0.7
 %patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1549047482
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1582934712
+# -Werror is for werrorists
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
@@ -167,7 +234,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/heat
-cp LICENSE %{buildroot}/usr/share/package-licenses/heat/LICENSE
+cp %{_builddir}/heat-8.0.7/LICENSE %{buildroot}/usr/share/package-licenses/heat/294b43b2cec9919063be1a3b49e8722648424779
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -215,7 +282,7 @@ install -p -D -m 644 etc/heat/heat.conf.sample %{buildroot}/usr/share/defaults/h
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/heat/LICENSE
+/usr/share/package-licenses/heat/294b43b2cec9919063be1a3b49e8722648424779
 
 %files python
 %defattr(-,root,root,-)
